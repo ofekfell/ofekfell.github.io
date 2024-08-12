@@ -176,8 +176,9 @@
             margin: 15% auto;
             padding: 20px;
             border-radius: 5px;
-            width: 300px;
+            width: 320px;
         }
+
         .close {
             color: #aaa;
             float: right;
@@ -185,14 +186,37 @@
             font-weight: bold;
             cursor: pointer;
         }
+
+        .form-row {
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
         form input {
-          border-radius: 5px;
           background-color: white;
           font-weight: italic;
-            width: 70%;
-            padding: 10px;
-            margin: 10px;
+          width: 250px;
+          height: 40px;
+          padding: 5px 10px;
+          font-size: 16px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
         }
+
+        form label {
+          width: 100px;
+          text-align: right;
+          padding-right: 15px;
+        }
+
+        form button{
+          margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 16px;
+        }
+
+
 
     footer {
       text-align: center;
@@ -294,10 +318,10 @@
           <span class="close" onclick="closePopup()">&times;</span>
           <h2>Join the Waitlist</h2>
           <form id="waitlistForm" name="contact" netlify>
-              <input type="text" id="name" name="name" placeholder="Name" required>
-              <input type="email" id="email" name="email" placeholder="Email" required>
-              <input type="text" id="company" name="company" placeholder="Company" required>
-              <input type="text" id="role" name="role" placeholder="Role" required>
+              <div class="form-row"><label>Name</label><input type="text" id="name" name="name" placeholder="John" required></div>
+              <div class="form-row"><label>Email</label><input type="email" id="email" name="email" placeholder="Email" required></div>
+              <div class="form-row"><label>Company</label><input type="text" id="company" name="company" placeholder="Company" required></div>
+              <div class="form-row"><label>Role</label><input type="text" id="role" name="role" placeholder="Role" required></div>
               <button class="cta-button" type="submit">Submit</button>
           </form>
       </div>
