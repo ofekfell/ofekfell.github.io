@@ -45,6 +45,32 @@
             }
         }
 
+        /* Matrix grid canvas */
+        #matrix-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        /* Coordinates display */
+        .coordinates {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Courier New', monospace;
+            color: #8a2be2;
+            font-size: 16px;
+            font-weight: 700;
+            z-index: 10;
+            text-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+            letter-spacing: 1px;
+        }
+
         .container {
             text-align: center;
             z-index: 2;
@@ -157,6 +183,12 @@
     </style>
 </head>
 <body>
+    <!-- Matrix grid background -->
+    <canvas id="matrix-grid"></canvas>
+    
+    <!-- Mouse coordinates display -->
+    <div class="coordinates">[0.000, 0.000]</div>
+    
     <div class="overlay"></div>
     
     <!-- Floating particles -->
@@ -172,8 +204,56 @@
     </div>
 
     <script>
-        // Add some subtle interactive elements
+        // Matrix grid setup
+        const canvas = document.getElementById('matrix-grid');
+        const ctx = canvas.getContext('2d');
+        const coordinatesDisplay = document.querySelector('.coordinates');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // Draw matrix grid
+        function drawGrid() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = 'rgba(138, 43, 226, 0.15)';
+            ctx.lineWidth = 1;
+            
+            const gridSize = 30;
+            
+            // Vertical lines
+            for (let x = 0; x <= canvas.width; x += gridSize) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, canvas.height);
+                ctx.stroke();
+            }
+            
+            // Horizontal lines
+            for (let y = 0; y <= canvas.height; y += gridSize) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(canvas.width, y);
+                ctx.stroke();
+            }
+        }
+
+        drawGrid();
+        window.addEventListener('resize', drawGrid);
+
+        // Mouse coordinate tracking
         document.addEventListener('mousemove', (e) => {
+            // Normalize coordinates (0.000 to 1.000)
+            const normalizedX = (e.clientX / window.innerWidth).toFixed(3);
+            const normalizedY = (e.clientY / window.innerHeight).toFixed(3);
+            
+            coordinatesDisplay.textContent = `[${normalizedX}, ${normalizedY}]`;
+            
+            // Existing particle movement code
             const particles = document.querySelectorAll('.particle');
             const x = e.clientX / window.innerWidth;
             const y = e.clientY / window.innerHeight;
