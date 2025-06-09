@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4M1T2TR5TY"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-4M1T2TR5TY');
-  </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4M1T2TR5TY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-4M1T2TR5TY');
+    </script>
     <link rel="icon" type="image/png" href="/favicon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -54,7 +53,7 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            opacity: 0.3;
+            opacity: 0.45;
         }
 
         /* Coordinates display */
@@ -221,7 +220,7 @@
         // Draw matrix grid
         function drawGrid() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.strokeStyle = 'rgba(138, 43, 226, 0.15)';
+            ctx.strokeStyle = 'rgba(138, 43, 226, 0.22)';
             ctx.lineWidth = 1;
             
             const gridSize = 30;
