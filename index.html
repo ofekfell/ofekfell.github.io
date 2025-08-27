@@ -13,6 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Currently Building</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -20,17 +21,24 @@
             box-sizing: border-box;
         }
 
+        html {
+            height: 100%;
+        }
+        
         body {
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
             font-family: 'Courier New', monospace;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             background: linear-gradient(135deg, #1a1a1a, #2d1b69, #1e1e2e, #0f0f23);
-            background-size: 200% 200%;
+            background-size: 400% 400%;
             animation: gradientShift 15s ease-in-out infinite;
+            padding: 20px 0;
+            position: relative;
         }
 
         @keyframes gradientShift {
@@ -75,10 +83,11 @@
             text-align: center;
             z-index: 2;
             position: relative;
+            margin-top: 30px;
         }
 
         h1 {
-            font-size: clamp(3rem, 8vw, 8rem);
+            font-size: clamp(2rem, 6vw, 4rem);
             font-weight: 700;
             color: #e0e0e0;
             text-shadow: 0 2px 8px rgba(138, 43, 226, 0.3);
@@ -89,12 +98,56 @@
         }
 
         .subtitle {
-            font-size: clamp(1.2rem, 4vw, 2.5rem);
+            font-size: clamp(0.8rem, 2vw, 1.1rem);
             font-weight: 400;
             color: #a0a0a0;
             text-shadow: 0 1px 4px rgba(138, 43, 226, 0.2);
             animation: fadeInUp 2s ease-out 0.3s both;
-            letter-spacing: 3px;
+            letter-spacing: 1px;
+            text-align: left;
+            max-width: 90%;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .subtitle ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin: 0;
+        }
+        
+        .subtitle li {
+            margin-bottom: 8px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 20px 0;
+            animation: fadeInUp 2s ease-out 0.4s both;
+        }
+        
+        .social-icon {
+            font-size: 24px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 8px;
+            border-radius: 50%;
+            background: rgba(138, 43, 226, 0.1);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            color: #a0a0a0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.2);
+            background: rgba(138, 43, 226, 0.2);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
         }
 
         @keyframes fadeInUp {
@@ -179,7 +232,130 @@
             .subtitle {
                 letter-spacing: 0.5px;
             }
+            
+            .container {
+                margin-top: 45px;
+            }
+            
+            .coordinates {
+                font-size: 14px;
+                top: 15px;
+            }
         }
+
+        .navigation {
+    z-index: 2;
+    position: relative;
+    animation: fadeInUp 2s ease-out 0.6s both;
+}
+
+
+.category-title {
+    font-size: 0.9rem;
+    color: #8a2be2;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(138, 43, 226, 0.3);
+}
+
+.circle-group {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.circle-item {
+    position: relative;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(138, 43, 226, 0.3));
+    border: 2px solid rgba(138, 43, 226, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.circle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.circle-item:hover .circle {
+    transform: scale(1.2);
+    background: linear-gradient(135deg, rgba(138, 43, 226, 0.4), rgba(138, 43, 226, 0.5));
+    border-color: rgba(138, 43, 226, 0.8);
+    box-shadow: 0 10px 30px rgba(138, 43, 226, 0.4);
+}
+
+.circle-item:hover .circle::before {
+    opacity: 1;
+}
+
+.circle-icon {
+    font-size: 32px;
+    color: white;
+    z-index: 1;
+}
+
+.circle-label {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 12px;
+    font-size: 0.8rem;
+    color: #a0a0a0;
+    opacity: 0;
+    transition: all 0.3s ease;
+    text-align: center;
+    white-space: nowrap;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 4px rgba(138, 43, 226, 0.2);
+}
+
+.circle-item:hover .circle-label {
+    opacity: 1;
+    transform: translateX(-50%) translateY(5px);
+}
+
+.categories-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    z-index: 2;
+    position: relative;
+}
+
+.nav-category {
+    flex: 0 1 280px;
+    text-align: center;
+}
+
     </style>
 </head>
 <body>
@@ -199,9 +375,118 @@
     <div class="particle"></div>
 
     <div class="container">
-        <h1>Currently Building</h1>
-        <p class="subtitle">stay tuned</p>
+        <h1>ofek feller</h1>
+        <div class="social-links">
+            <a href="#" class="social-icon" data-url="https://www.instagram.com/ofekfeller/"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon" data-url="https://www.facebook.com/ofek.feller"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="social-icon" data-url="https://x.com/FellerOfek"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="social-icon" data-url="https://www.linkedin.com/in/ofek-feller-0a8415140"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <br>
+        <div class="subtitle">
+            <ul>
+                <li>Currently working on a new AI startup</li>
+                <li>0-1 product development and early-stage building</li>
+                <li>Software Engineer, Product Manager</li>
+                <li>B.S. in Computer Science and Math from Tel Aviv University</li>
+                <li>
+                    Co-Founded 
+                    <a href="https://www.linkedin.com/company/tau-cs-student-club/" target="_blank" style="color: #8a2be2; text-decoration: underline;">
+                        TAU CS Club</a>
+                    (Tech hub for CS students that runs meetups, workshops, hackathons, entrepreneurship and more.)
+                </li>
+                <li>Adrenaline junkie: snowboarding, kitesurfing, skydiving, alpine trekking, climbing, biking, diving and more</li>
+
+            </ul>
+        </div>
     </div>
+
+</br>
+</br>
+
+    <div class="navigation">
+    <div class="categories-container">
+        <div class="nav-category">
+            <h2 class="category-title">Software Projects</h2>
+            <div class="circle-group">
+                <a href="#" class="circle-item" data-url="https://github.com/ofekfell/media-mcp-editor">
+                    <div class="circle">
+                        <span class="circle-icon">▶️</span>
+                    </div>
+                    <span class="circle-label">MediaMCP</span>
+                </a>
+                <a href="#" class="circle-item">
+                    <div class="circle">
+                        <span class="circle-icon">👫</span>
+                    </div>
+                    <span class="circle-label">Referr</span>
+                </a>
+                <a href="#" class="circle-item">
+                    <div class="circle">
+                        <span class="circle-icon">🗼</span>
+                    </div>
+                    <span class="circle-label">AutonoGuide</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="nav-category">
+            <h2 class="category-title">Articles</h2>
+            <div class="circle-group">
+                <a href="#" class="circle-item" data-url="https://medium.com/@ofek-feller/software-professional-services-opportunities-in-the-ai-era-eba956a55c79">
+                    <div class="circle">
+                        <span class="circle-icon">💻</span>
+                    </div>
+                    <span class="circle-label">Professional Services: Opportunities with AI</span>
+                </a>
+                <a href="#" class="circle-item" data-url="https://medium.com/@ofek-feller/understanding-the-value-chain-of-card-payments-fb474643900d">
+                    <div class="circle">
+                        <span class="circle-icon">💳</span>
+                    </div>
+                    <span class="circle-label">Understanding Card Payments</span>
+                </a>
+                <a href="#" class="circle-item" data-url="https://medium.com/@ofek-feller/how-to-pay-less-for-traveling-and-enjoy-more-97a7c6037c09">
+                    <div class="circle">
+                        <span class="circle-icon">✈️</span>
+                    </div>
+                    <span class="circle-label">Practices to save money while traveling</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="nav-category">
+            <h2 class="category-title">Travel Blogs</h2>
+            <div class="circle-group">
+                <a href="#" class="circle-item" data-url="https://maps.app.goo.gl/MrZgWne6bsFSyxUv9">
+                    <div class="circle">
+                        <span class="circle-icon">🇿🇦</span>
+                    </div>
+                    <span class="circle-label">South Africa</span>
+                </a>
+                <a href="#" class="circle-item" data-url="https://maps.app.goo.gl/C5f9uJ8hTSLD5ave6">
+                    <div class="circle">
+                        <span class="circle-icon">🇳🇵</span>
+                    </div>
+                    <span class="circle-label">Nepal</span>
+                </a>
+                <a href="#" class="circle-item" data-url="https://maps.app.goo.gl/fqfJC99tL6HMrBYB7">
+                    <div class="circle">
+                        <span class="circle-icon">🇹🇭</span>
+                    </div>
+                    <span class="circle-label">Thailand</span>
+                </a>
+                <a href="#" class="circle-item" data-url="https://maps.app.goo.gl/sfZEzqw95ynLmYSS7">
+                    <div class="circle">
+                        <span class="circle-icon">🇰🇬</span>
+                    </div>
+                    <span class="circle-label">Kyrgyzstan</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 
     <script>
         // Matrix grid setup
@@ -300,6 +585,75 @@
             }
         `;
         document.head.appendChild(style);
+
+        // Add click functionality to circles
+document.querySelectorAll('.circle-item').forEach(item => {
+    item.addEventListener('click', function(e) {
+        e.preventDefault();
+        const url = this.dataset.url;
+        if (url && url !== '#') {
+            window.open(url, '_blank');
+        }
+    });
+});
+
+// Add click functionality to social icons
+document.querySelectorAll('.social-icon').forEach(icon => {
+    icon.addEventListener('click', function(e) {
+        e.preventDefault();
+        const url = this.dataset.url;
+        if (url && url !== '#') {
+            window.open(url, '_blank');
+        }
+    });
+});
+
+// Add sparkle effect on hover
+document.querySelectorAll('.circle').forEach(circle => {
+    circle.addEventListener('mouseenter', function() {
+        createSparkles(this);
+    });
+});
+
+function createSparkles(element) {
+    for (let i = 0; i < 3; i++) {
+        setTimeout(() => {
+            const sparkle = document.createElement('div');
+            sparkle.style.position = 'absolute';
+            sparkle.style.width = '4px';
+            sparkle.style.height = '4px';
+            sparkle.style.background = '#8a2be2';
+            sparkle.style.borderRadius = '50%';
+            sparkle.style.pointerEvents = 'none';
+            sparkle.style.animation = 'sparkle 1s ease-out';
+            
+            const rect = element.getBoundingClientRect();
+            const x = rect.left + Math.random() * rect.width;
+            const y = rect.top + Math.random() * rect.height;
+            
+            sparkle.style.left = x + 'px';
+            sparkle.style.top = y + 'px';
+            sparkle.style.position = 'fixed';
+            
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => sparkle.remove(), 1000);
+        }, i * 100);
+    }
+}
+
+// Add sparkle animation (add this CSS)
+const sparkleStyle = document.createElement('style');
+sparkleStyle.textContent = `
+    @keyframes sparkle {
+        to {
+            transform: scale(3) rotate(180deg) translateY(-20px);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(sparkleStyle);
+
     </script>
 </body>
 </html>
